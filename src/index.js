@@ -283,21 +283,48 @@ const AudioPlayer = ({ tracks, userLevel, username, onLogout }) => {
         </div>
     );
 };
-
 // =================================================================
 // 4. COMPONENTE PRINCIPALE E STILI
 // =================================================================
 
 const App = () => {
-    // Stato per utente: null = non autenticato
-    const [userLevel, setUserLevel] = useState(null); 
-    const [username, setUsername] = useState(null);
+    // Stato per utente: null = non autenticato
+    const [userLevel, setUserLevel] = useState(null); 
+    const [username, setUsername] = useState(null);
 
-    const handleLogin = (level, uname) => {
-        setUserLevel(level);
-        setUsername(uname);
-    };
-    
-    const handleLogout = () => {
-        setUserLevel(null); 
-        setUsername(null);
+    const handleLogin = (level, uname) => {
+        setUserLevel(level);
+        setUsername(uname);
+    };
+    
+    const handleLogout = () => {
+        setUserLevel(null); 
+        setUsername(null);
+    }; // <--- La definizione della funzione deve essere completa
+
+    if (!userLevel) {
+        return <LoginScreen onLogin={handleLogin} />;
+    }
+
+    return (
+        <AudioPlayer 
+            tracks={MUSIC_CATALOG} 
+            userLevel={userLevel} 
+            username={username}
+            onLogout={handleLogout} 
+        />
+    );
+}; // <--- Chiusura del componente App
+
+// Stili CSS di base (Inline per semplicità)
+const styles = {
+    // ... (tutti gli stili) ...
+};
+
+// PUNTO DI INGRESSO (QUESTA PARTE DEVE ESSERE ALLA FINE DEL FILE)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
