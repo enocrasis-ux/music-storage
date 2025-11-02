@@ -1,0 +1,23 @@
+{
+  "name": "music-player-pwa",
+  "version": "1.0.0",
+  "description": "Simple React PWA Music Player",
+  "main": "index.html",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.10"
+  },
+  "keywords": [
+    "pwa",
+    "react",
+    "music"
+  ]
+}
