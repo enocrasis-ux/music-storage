@@ -13,7 +13,6 @@ const USERS = [
 ];
 
 // Catalogo musicale con la corretta mappatura delle colonne.
-// GLI URL SONO STATI MANTENUTI ESATTAMENTE COME FORNITI DALL'UTENTE.
 const MUSIC_CATALOG = [
     // La struttura è: { title: "Titolo Brano", menu1: "Categoria", menu2: "Sottocategoria", level: X, buttonName: "Nome del pulsante", url: "URL Raw Completo" }
     { title: 'Ingresso e Squadratura', menu1: 'Apprendista', menu2: 'Apertura Lavori', level: 1, buttonName: 'Ingresso e Squadratura', url: 'https://github.com/enocrasis-ux/music-storage/raw/main/1_IngressoSquadratura_Primo.mp3' },
@@ -67,17 +66,16 @@ const MUSIC_CATALOG = [
 
 // Funzione per definire la palette in base al livello utente
 const getLevelColors = (level) => {
-    // Colore di contrasto per lo stato Pausa (Giallo, comune a tutti)
     const PAUSE_COLOR = '#FFC107'; 
-    const PAUSE_TEXT_COLOR = '#000000'; // Testo nero su giallo
+    const PAUSE_TEXT_COLOR = '#000000'; 
 
     switch (level) {
         case 1: // Apprendista: Bianco e Nero
             return {
-                primaryBackground: '#1A1A1A', // Sfondo scuro comune
-                accent: '#E0E0E0', // Pulsante base grigio chiaro
-                text: '#000000', // Testo scuro sui pulsanti chiari
-                active: '#FFFFFF', // Pulsante attivo Bianco (Play)
+                primaryBackground: '#1A1A1A', 
+                accent: '#E0E0E0', 
+                text: '#000000', 
+                active: '#FFFFFF', 
                 paused: PAUSE_COLOR, 
                 pausedText: PAUSE_TEXT_COLOR,
                 headerText: '#FFFFFF', 
@@ -86,9 +84,9 @@ const getLevelColors = (level) => {
         case 2: // Compagno: Verde e Nero
             return {
                 primaryBackground: '#1A1A1A',
-                accent: '#4CAF50', // Pulsante base Verde
+                accent: '#4CAF50', 
                 text: '#FFFFFF',
-                active: '#81C784', // Verde chiaro (Play)
+                active: '#81C784', 
                 paused: PAUSE_COLOR, 
                 pausedText: PAUSE_TEXT_COLOR,
                 headerText: '#4CAF50',
@@ -97,9 +95,9 @@ const getLevelColors = (level) => {
         case 3: // Maestro: Rosso e Nero
             return {
                 primaryBackground: '#1A1A1A',
-                accent: '#F44336', // Pulsante base Rosso
+                accent: '#F44336', 
                 text: '#FFFFFF',
-                active: '#E57373', // Rosso chiaro (Play)
+                active: '#E57373', 
                 paused: PAUSE_COLOR,
                 pausedText: PAUSE_TEXT_COLOR,
                 headerText: '#F44336',
@@ -128,10 +126,13 @@ const styles = {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            backgroundColor: colors.primaryBackground, // Sfondo scuro dinamico
-            color: '#FFFFFF', // Colore testo di base (bianco)
+            // Aggiornamento: larghezza al 100% del contenitore padre (il viewport), padding 0 per coprire i bordi.
+            width: '100%', 
+            padding: '0 0 80px 0', 
+            backgroundColor: colors.primaryBackground, 
+            color: '#FFFFFF', 
             fontFamily: 'Roboto, sans-serif',
-            padding: '0 10px 80px 10px', // Spazio per il footer
+            boxSizing: 'border-box',
         };
     },
     loginContainer: {
@@ -140,10 +141,12 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh',
+        width: '100%', // Assicura che copra tutta la larghezza
         backgroundColor: '#1A1A1A',
         color: '#FFFFFF',
         padding: '20px',
         textAlign: 'center',
+        boxSizing: 'border-box',
     },
     // Stili Login Screen
     loginHeader: {
@@ -156,8 +159,8 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '15px',
-        width: '100%',
-        maxWidth: '350px',
+        width: '90%', // Usa una percentuale per adattarsi meglio
+        maxWidth: '400px',
     },
     input: {
         padding: '15px',
@@ -171,7 +174,7 @@ const styles = {
         padding: '15px',
         borderRadius: '8px',
         border: 'none',
-        backgroundColor: '#4CAF50', // Bottone verde fisso per il login
+        backgroundColor: '#4CAF50', 
         color: '#FFFFFF',
         fontSize: '1.2em',
         cursor: 'pointer',
@@ -192,7 +195,7 @@ const styles = {
     header: (level) => {
         const colors = getLevelColors(level);
         return {
-            padding: '15px 0',
+            padding: '15px 15px', // Padding laterale per il contenuto dell'header
             borderBottom: `2px solid ${colors.borderColor}`,
             display: 'flex',
             justifyContent: 'space-between',
@@ -217,6 +220,7 @@ const styles = {
     },
     navigation: {
         marginBottom: '15px',
+        padding: '0 15px', // Padding laterale per la sezione navigazione
     },
     backButton: {
         padding: '10px 15px',
@@ -233,21 +237,19 @@ const styles = {
         fontWeight: 'normal',
         marginBottom: '15px',
         color: '#E0E0E0',
-        paddingLeft: '5px',
     },
     content: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '12px', // Spaziatura tra i pulsanti
-        padding: '0 5px',
+        gap: '12px', 
+        padding: '0 15px', // Padding laterale per i pulsanti
     },
-    // Stili Pulsanti Navigazione e Brani (Grandi e Arrotondati)
-    // Usano la stessa base, ma il trackButton ha logica di colore complessa
+    // Stili Pulsanti Navigazione e Brani
     baseButton: (level) => {
         const colors = getLevelColors(level);
         return {
             padding: '20px 15px',
-            borderRadius: '12px', // Arrotondati
+            borderRadius: '12px', 
             border: 'none',
             backgroundColor: colors.accent,
             color: colors.text,
@@ -257,9 +259,11 @@ const styles = {
             cursor: 'pointer',
             transition: 'background-color 0.2s, transform 0.1s',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+            width: '100%', // Garantisce che il pulsante sia a tutta larghezza
+            boxSizing: 'border-box',
         };
     },
-    // Stili Pulsanti Brani (Tracks) - Logica dinamica di stato
+    // Stili Pulsanti Brani (Tracks)
     trackButton: (track, currentTrack, isPlaying, level) => {
         const colors = getLevelColors(level);
         const isActive = currentTrack?.url === track.url;
@@ -270,7 +274,6 @@ const styles = {
         if (isActive) {
             if (isPlaying) {
                 backgroundColor = colors.active;
-                // Colore testo nero su Liv. 1 (Bianco attivo)
                 textColor = (level === 1) ? colors.text : '#FFFFFF'; 
                 indicatorText = ' (Play)';
             } else {
@@ -281,13 +284,12 @@ const styles = {
         }
 
         return {
-            ...styles.baseButton(level), // Eredita la base
+            ...styles.baseButton(level), 
             backgroundColor: backgroundColor,
             color: textColor,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            // Per il pulsante Play/Pausa
             indicatorText: indicatorText, 
         };
     },
@@ -296,13 +298,11 @@ const styles = {
         fontSize: '0.8em',
         fontWeight: 'normal',
         marginLeft: '10px',
-        // Utilizzato solo per la visualizzazione del testo
     },
     pausedIndicator: {
         fontSize: '0.8em',
         fontWeight: 'normal',
         marginLeft: '10px',
-        // Utilizzato solo per la visualizzazione del testo
     },
     // Footer del Player
     footer: {
@@ -317,11 +317,13 @@ const styles = {
         fontSize: '0.9em',
         borderTop: '1px solid #444444',
         boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.5)',
+        width: '100%', // Copre tutta la larghezza
+        boxSizing: 'border-box',
     },
 };
 
 // =================================================================
-// 3. COMPONENTE LOGIN (Aggiornato il nome)
+// 3. COMPONENTE LOGIN 
 // =================================================================
 
 const LoginScreen = ({ onLogin }) => {
@@ -367,7 +369,7 @@ const LoginScreen = ({ onLogin }) => {
 };
 
 // =================================================================
-// 4. LOGICA DI RIPRODUZIONE AUDIO E NAVIGAZIONE (Adattata agli stili)
+// 4. LOGICA DI RIPRODUZIONE AUDIO E NAVIGAZIONE 
 // =================================================================
 
 const AudioPlayer = ({ tracks, userLevel, username, onLogout }) => {
@@ -496,7 +498,6 @@ const AudioPlayer = ({ tracks, userLevel, username, onLogout }) => {
 
                 {/* Visualizzazione Brani (Pulsanti) */}
                 {menuLevel === 'tracks' && finalTracks.map(track => {
-                    // Ottiene tutti gli stili dinamici per il track
                     const trackStyle = styles.trackButton(track, currentTrack, isPlaying, userLevel);
                     
                     return (
@@ -505,7 +506,6 @@ const AudioPlayer = ({ tracks, userLevel, username, onLogout }) => {
                             onClick={() => handleTrackClick(track)} 
                             style={trackStyle}
                         >
-                            {/* Utilizza il campo buttonName */}
                             <span style={{textAlign: 'left', flexGrow: 1}}>{track.buttonName}</span>
                             {/* Indicatori dinamici */}
                             {currentTrack?.url === track.url && isPlaying && <span style={styles.playingIndicator}>{trackStyle.indicatorText}</span>}
@@ -533,7 +533,6 @@ const AudioPlayer = ({ tracks, userLevel, username, onLogout }) => {
 // =================================================================
 
 const App = () => {
-    // Stato per utente: null = non autenticato
     const [userLevel, setUserLevel] = useState(null); 
     const [username, setUsername] = useState(null);
 
