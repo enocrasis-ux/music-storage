@@ -7,9 +7,9 @@ import ReactDOM from 'react-dom/client';
 
 // Dati utenti confermati:
 const USERS = [
-    { username: 'apprendisti', password: 'boaz1', level: 1 },
-    { username: 'compagni', password: 'jakin2', level: 2 },
-    { username: 'maestri', password: '3tubalcain', level: 3 },
+    { username: 'apprendisti', password: '3anni', level: 1 },
+    { username: 'compagni', password: '5anni', level: 2 },
+    { username: 'maestri', password: '7anni', level: 3 },
 ];
 
 // Catalogo musicale con la corretta mappatura delle colonne.
